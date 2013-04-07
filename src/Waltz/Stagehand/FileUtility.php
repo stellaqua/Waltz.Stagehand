@@ -9,6 +9,8 @@
  */
 namespace Waltz\Stagehand;
 
+use Waltz\Stagehand\FileUtility\FileObject\PhpClassFileObjectIterator;
+
 /**
  * FileUtility
  *
@@ -17,12 +19,12 @@ namespace Waltz\Stagehand;
 class FileUtility
 {
     /**
-     * listFilePath
+     * listFilePaths
      *
      * @param string $targetPath
-     * @return array file path list
+     * @return array File path list
      */
-    public static function listFilePath ( $targetPath ) {
+    public static function listFilePaths ( $targetPath ) {
         if ( is_file($targetPath) === true ) {
             return array($targetPath);
         }
@@ -40,7 +42,7 @@ class FileUtility
             $realPath = realpath($targetPath) . '/' . $fileName;
 
             if ( is_dir($realPath) === true ) {
-                $fileList = array_merge($fileList, self::listFilePath($realPath));
+                $fileList = array_merge($fileList, self::listFilePaths($realPath));
             } else {
                 $fileList[] = $realPath;
             }
@@ -49,5 +51,16 @@ class FileUtility
         sort($fileList);
 
         return $fileList;
+    }
+
+    /**
+     * listPhpClassFileObjects
+     *
+     * @param string $targetPath
+     * @return PhpClassFileObjectIterator
+     */
+    public static function listPhpClassFileObjects ( $targetPath ) {
+        $fileObjectIterator = new PhpClassFileObjectIterator($targetPath);
+        return $fileObjectIterator;
     }
 }
