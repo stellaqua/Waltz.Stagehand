@@ -11,6 +11,12 @@ namespace Waltz\Stagehand\FileUtility\FileObject;
 
 use Waltz\Stagehand\FileUtility\FileObject\AbstractFileObject;
 
+/**
+ * PhpClassFile
+ *
+ * @uses AbstractFileObject
+ * @package Waltz.Stagehand
+ */
 class PhpClassFile extends AbstractFileObject
 {
     /**
