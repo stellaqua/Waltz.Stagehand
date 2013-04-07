@@ -31,7 +31,7 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
      * setUp
      */
     protected function setUp ( ) {
-        $this->_dataDir = __DIR__ . '/data/FileUtility';
+        $this->_dataDir = __DIR__ . '/data/FileUtilityTest';
     }
 
     /**
