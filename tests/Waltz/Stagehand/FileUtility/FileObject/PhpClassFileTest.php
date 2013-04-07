@@ -30,7 +30,7 @@ class PhpClassFileTest extends \PHPUnit_Framework_TestCase
      * setUp
      */
     protected function setUp ( ) {
-        $this->_dataDir = __DIR__ . '/../../data/FileUtility/FileObject/php_class_file';
+        $this->_dataDir = __DIR__ . '/data/PhpClassFileTest';
     }
 
     /**
@@ -67,7 +67,40 @@ class PhpClassFileTest extends \PHPUnit_Framework_TestCase
     public function test_getClasNames_With_attributes ( ) {
         $targetPath = $this->_dataDir . '/WithAttributes.php';
         $fileObject = new PhpClassFile($targetPath);
-        $expected = array('FirstClass', 'SecondClass', 'ThirdClass');
+        $expected = array(
+                          'Dummy\FirstClass',
+                          'Dummy\SecondClass',
+                          'Dummy\ThirdClass',
+                         );
         $this->assertSame($expected, $fileObject->getClassNames());
+    }
+
+    /**
+     * test_getNamespace
+     */
+    public function test_getNamespace ( ) {
+        $targetPath = $this->_dataDir . '/WithNamespace.php';
+        $fileObject = new PhpClassFile($targetPath);
+        $this->assertSame('Test\Name\Space', $fileObject->getNamespace());
+    }
+
+    /**
+     * test_getClassNames_With_namespace
+     */
+    public function test_getClassNames_With_namespace ( ) {
+        $targetPath = $this->_dataDir . '/WithNamespace.php';
+        $fileObject = new PhpClassFile($targetPath);
+        $expected = array('Test\Name\Space\FirstClass');
+        $this->assertSame($expected, $fileObject->getClassNames());
+    }
+
+    /**
+     * test_getClssNames_Without_namespace
+     */
+    public function test_getClssNames_Without_namespace ( ) {
+        $targetPath = $this->_dataDir . '/WithNamespace.php';
+        $fileObject = new PhpClassFile($targetPath);
+        $expected = array('FirstClass');
+        $this->assertSame($expected, $fileObject->getClassNames(false));
     }
 }
