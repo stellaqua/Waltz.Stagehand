@@ -20,6 +20,20 @@ use Waltz\Stagehand\CuiUtility\DecorationsObject;
 class CuiUtility
 {
     /**
+     * Default window width
+     *
+     * @var int
+     */
+    const DEFAULT_WINDOW_WIDTH = 80;
+
+    /**
+     * Default window height
+     *
+     * @var int
+     */
+    const DEFAULT_WINDOW_HEIGHT = 25;
+
+    /**
      * Cursor object
      *
      * @var CursorObject
@@ -123,6 +137,22 @@ class CuiUtility
         $this->_cursor->moveHome()
             ->move(0, $canvasHeight);
         return $this;
+    }
+
+    /**
+     * Get terminal window size
+     *
+     * @return array (width, height)
+     */
+    public static function getWindowSize ( ) {
+        $terminal = exec('echo $TERM_PROGRAM');
+        if ( $terminal === 'Apple_Terminal' ) {
+            $windowWidth = exec('tput cols');
+            $windowHeight = exec('tput lines');
+        }
+        $windowWidth = ( $windowWidth > 0 ) ? $windowWidth : self::DEFAULT_WINDOW_WIDTH;
+        $windowHeight = ( $windowHeight > 0 ) ? $windowHeight : self::DEFAULT_WINDOW_HEIGHT;
+        return array($windowWidth, $windowHeight);
     }
 
     /**
