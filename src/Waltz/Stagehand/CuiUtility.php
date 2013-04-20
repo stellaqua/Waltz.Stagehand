@@ -62,6 +62,15 @@ class CuiUtility
     }
 
     /**
+     * Get canvas size
+     *
+     * @return array Canvas size (width, height)
+     */
+    public function getCanvasSize ( ) {
+        return $this->_canvasSize;
+    }
+
+    /**
      * Draw by block
      *
      * @param array $text Drawing text with decoration tags

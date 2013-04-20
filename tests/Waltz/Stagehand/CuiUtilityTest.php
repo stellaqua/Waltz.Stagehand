@@ -100,4 +100,13 @@ class CuiUtilityTest extends \PHPUnit_Framework_TestCase
         $this->expectOutputString($expected);
         $cuiUtility->setCanvas(count($text))->drawByBlock($text);
     }
+
+    public function test_getCanvasSize ( ) {
+        $cuiUtility = new CuiUtility();
+        $text = array('First Line', 'Second Line', 'Third Line');
+        ob_start();
+        $cuiUtility->setCanvas(count($text))->drawByBlock($text);
+        ob_end_clean();
+        $this->assertSame(array(11, 3), $cuiUtility->getCanvasSize());
+    }
 }
