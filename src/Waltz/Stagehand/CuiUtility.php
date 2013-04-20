@@ -97,9 +97,9 @@ class CuiUtility
             $lineWidth = $this->_getActualLength($line);
             if ( $lineWidth > $maxWidth ) {
                 $maxWidth = $lineWidth;
-                $this->_canvasSize[0] = $lineWidth;
             }
         }
+        $this->_canvasSize[0] += $maxWidth;
         echo $this->_cursor
             ->setAncor()
             ->move($maxWidth, -count($text))
