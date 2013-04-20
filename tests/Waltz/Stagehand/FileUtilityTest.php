@@ -13,7 +13,7 @@ use Waltz\Stagehand\FileUtility;
 use Waltz\Stagehand\FileUtility\FileObject\PhpClassFileObjectIterator;
 
 /**
- * SimpleTest
+ * FileUtilityTest
  *
  * @uses PHPUnit_Framework_TestCase
  * @package Waltz.Stagehand
