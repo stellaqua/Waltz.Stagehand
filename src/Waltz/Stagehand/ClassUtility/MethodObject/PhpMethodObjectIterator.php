@@ -34,10 +34,20 @@ class PhpMethodObjectIterator implements \Iterator
      * Constructor
      *
      * @param ReflectionClass $reflectionClass
+     * @param bool $withParentClassMethods
      */
-    public function __construct ( \ReflectionClass $reflectionClass ) {
+    public function __construct ( \ReflectionClass $reflectionClass, $withParentClassMethods = false ) {
         $this->_reflectionClass = $reflectionClass;
-        $this->_reflectionMethods = $reflectionClass->getMethods();
+        $className = $reflectionClass->getName();
+        $reflectionMethods = $reflectionClass->getMethods();
+        $this->_reflectionMethods = array();
+        foreach ( $reflectionMethods as $reflectionMethod ) {
+            $classReflection = $reflectionMethod->getDeclaringClass();
+            if ( $withParentClassMethods === true
+                 || ( $withParentClassMethods === false && $classReflection->getName() === $className ) ) {
+                $this->_reflectionMethods[] = $reflectionMethod;
+            }
+        }
     }
 
     public function rewind ( ) {

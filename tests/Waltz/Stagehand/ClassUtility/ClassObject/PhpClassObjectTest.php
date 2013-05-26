@@ -74,4 +74,21 @@ class PhpClassObjectTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf('Waltz\Stagehand\ClassUtility\MethodObject\PhpMethodObject', $methodObject);
         }
     }
+
+    /**
+     * test_listPhpMethodObjects_For_Child_Class
+     */
+    public function test_listPhpMethodObjects_For_Child_Class ( ) {
+        $targetPath = $this->_dataDir . '/ChildClass.php';
+        $classObject = new PhpClassObject('ChildClass', __NAMESPACE__, $targetPath);
+        $this->assertInstanceOf('ReflectionClass', $classObject->getReflectionClass());
+        $methodObjects = $classObject->listPhpMethodObjects();
+        $this->assertCount(1, $methodObjects);
+        foreach ( $methodObjects as $methodObject ) {
+            $this->assertInstanceOf('Waltz\Stagehand\ClassUtility\MethodObject\PhpMethodObject', $methodObject);
+            $methodReflection = $methodObject->getReflectionMethod();
+            $classReflection = $methodReflection->getDeclaringClass();
+            $this->assertSame('Waltz\Stagehand\ClassUtility\ClassObject\ChildClass', $classReflection->getName());
+        }
+    }
 }

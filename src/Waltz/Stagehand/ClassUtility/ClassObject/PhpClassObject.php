@@ -69,10 +69,11 @@ class PhpClassObject
     /**
      * List PhpMethodObject instances
      *
+     * @param bool $withParentClassMethods
      * @return PhpMethodObjectIterator
      */
-    public function listPhpMethodObjects ( ) {
-        $methodObjectIterator = new PhpMethodObjectIterator($this->_reflectionClass);
+    public function listPhpMethodObjects ( $withParentClassMethods = false ) {
+        $methodObjectIterator = new PhpMethodObjectIterator($this->_reflectionClass, $withParentClassMethods);
         return $methodObjectIterator;
     }
 }
