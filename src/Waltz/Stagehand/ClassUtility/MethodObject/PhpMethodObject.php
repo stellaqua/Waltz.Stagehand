@@ -53,6 +53,17 @@ class PhpMethodObject
     }
 
     /**
+     * Get method name
+     *
+     * @return string Method name
+     */
+    public function getName (  )
+    {
+        $methodName = $this->_reflectionMethod->getName();
+        return $methodName;
+    }
+
+    /**
      * Get DocComment of method
      *
      * @param bool $withCommentMark
