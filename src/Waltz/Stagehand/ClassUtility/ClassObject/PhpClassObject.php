@@ -53,6 +53,22 @@ class PhpClassObject
     }
 
     /**
+     * Get class name
+     *
+     * @param bool $withoutNamespace
+     * @return string Class name
+     */
+    public function getName ( $withoutNamespace = false )
+    {
+        $className = $this->_reflectionClass->getName();
+        if ( $withoutNamespace === true ) {
+            $tokens = explode('\\', $className);
+            $className = end($tokens);
+        }
+        return $className;
+    }
+
+    /**
      * Get DocComment of class
      *
      * @param bool $withCommentMark

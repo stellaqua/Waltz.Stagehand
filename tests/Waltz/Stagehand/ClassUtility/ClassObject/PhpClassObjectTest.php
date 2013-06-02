@@ -91,4 +91,26 @@ class PhpClassObjectTest extends \PHPUnit_Framework_TestCase
             $this->assertSame('Waltz\Stagehand\ClassUtility\ClassObject\ChildClass', $classReflection->getName());
         }
     }
+
+    /**
+     * test_getName
+     */
+    public function test_getName (  )
+    {
+        $targetPath = $this->_dataDir . '/OneClass.php';
+        $classObject = new PhpClassObject('OneClass', __NAMESPACE__, $targetPath);
+        $this->assertInstanceOf('ReflectionClass', $classObject->getReflectionClass());
+        $this->assertSame(__NAMESPACE__ . '\OneClass', $classObject->getName());
+    }
+
+    /**
+     * test_getName_Without_Namespace
+     */
+    public function test_getName_Without_Namespace (  )
+    {
+        $targetPath = $this->_dataDir . '/OneClass.php';
+        $classObject = new PhpClassObject('OneClass', __NAMESPACE__, $targetPath);
+        $this->assertInstanceOf('ReflectionClass', $classObject->getReflectionClass());
+        $this->assertSame('OneClass', $classObject->getName(true));
+    }
 }
