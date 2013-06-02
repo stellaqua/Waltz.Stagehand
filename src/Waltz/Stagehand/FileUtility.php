@@ -10,6 +10,7 @@
 namespace Waltz\Stagehand;
 
 use Waltz\Stagehand\FileUtility\FileObject\PhpClassFileObjectIterator;
+use Waltz\Stagehand\FileUtility\FileObject\PhpClassFile;
 
 /**
  * FileUtility
@@ -62,5 +63,17 @@ class FileUtility
     public static function listPhpClassFileObjects ( $targetPath ) {
         $fileObjectIterator = new PhpClassFileObjectIterator($targetPath);
         return $fileObjectIterator;
+    }
+
+    /**
+     * getPhpClassFileObject
+     *
+     * @param stringd $targetPath
+     * @return PhpClassFile
+     */
+    public static function getPhpClassFileObject ( $targetPath )
+    {
+        $fileObject = new PhpClassFile($targetPath);
+        return $fileObject;
     }
 }
