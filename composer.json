@@ -14,6 +14,11 @@
   "require": {
     "php": ">=5.4.0"
   },
+  "extra": {
+    "branch-alias": {
+      "dev-develop": "0.1.x-dev"
+    }
+  },
   "autoload": {
     "psr-0": {
       "Waltz\\Stagehand": "src/"
