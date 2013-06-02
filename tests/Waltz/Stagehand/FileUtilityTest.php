@@ -89,4 +89,16 @@ class FileUtilityTest extends \PHPUnit_Framework_TestCase
             $this->assertInstanceOf($expectedClassName, $fileObject);
         }
     }
+
+    /**
+     * test_getPhpClassFileObject_One_file
+     */
+    public function test_getPhpClassFileObject_One_file (  )
+    {
+        $targetPath = $this->_dataDir . '/one_file';
+        $fileObject = FileUtility::getPhpClassFileObject($targetPath);
+        $namespace = __NAMESPACE__ . '\FileUtility\FileObject';
+        $expectedClassName = $namespace . '\PhpClassFile';
+        $this->assertInstanceOf($expectedClassName, $fileObject);
+    }
 }
