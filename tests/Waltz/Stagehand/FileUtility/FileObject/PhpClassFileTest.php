@@ -103,4 +103,14 @@ class PhpClassFileTest extends \PHPUnit_Framework_TestCase
         $expected = array('FirstClass');
         $this->assertSame($expected, $fileObject->getClassNames(false));
     }
+
+    /**
+     * test_getClassNames_Class_defined_in_comment
+     */
+    public function test_getClassNames_Class_defined_in_comment ( ) {
+        $targetPath = $this->_dataDir . '/ClassInComment.php';
+        $fileObject = new PhpClassFile($targetPath);
+        $expected = array('Test\Name\Space\FirstClass');
+        $this->assertSame($expected, $fileObject->getClassNames());
+    }
 }
