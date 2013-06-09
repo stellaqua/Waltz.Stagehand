@@ -39,17 +39,15 @@ class PhpClassFile extends AbstractFileObject
      * @return array defined class names
      */
     public function getClassNames ( $withNamespace = true ) {
-        $pattern = '/class +([^ {\r\n]+).*\r?\n/ui';
-        if ( preg_match_all($pattern, $this->_content, $matches) === false ) {
-            return array();
-        }
-        $classNames = $matches[1];
-
-        $namespace = $this->getNamespace();
-        if ( $withNamespace === true && $namespace !== '' ) {
-            $classNames = array_map(function ( $className ) use ( $namespace ) {
-                                    return "$namespace\\$className";
-                                    }, $classNames);
+        $tokens = new \PHP_Token_Stream($this->_content);
+        $classes = $tokens->getClasses();
+        $classNames = array();
+        foreach ( $classes as $className => $class ) {
+            $namespace = $class['package']['namespace'];
+            if ( $withNamespace === true && $namespace !== '' ) {
+                $className = $namespace . '\\' . $className;
+            }
+            $classNames[] = $className;
         }
         return $classNames;
     }

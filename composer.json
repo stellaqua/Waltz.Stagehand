@@ -12,7 +12,8 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0"
+    "php": ">=5.4.0",
+    "phpunit/php-token-stream": ">=1.1.3@stable"
   },
   "extra": {
     "branch-alias": {
