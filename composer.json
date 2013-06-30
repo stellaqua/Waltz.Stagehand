@@ -3,7 +3,7 @@
   "description": "Waltz utility package",
   "keywords": ["Waltz", "framework", "UnitTest", "TDD"],
   "homepage": "https://github.com/stellaqua/Waltz.Stagehand",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "authors": [
     {
