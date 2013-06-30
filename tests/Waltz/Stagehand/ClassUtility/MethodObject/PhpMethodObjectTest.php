@@ -71,4 +71,15 @@ class PhpMethodObjectTest extends \PHPUnit_Framework_TestCase
         $expected.= " */";
         $this->assertSame($expected, $methodObject->getDocComment($withCommentMark = true));
     }
+
+    /**
+     * test_getName
+     */
+    public function test_getName (  )
+    {
+        $targetPath = $this->_dataDir . '/OneMethod.php';
+        $methodObject = new PhpMethodObject('OneMethod', 'firstMethod', __NAMESPACE__, $targetPath);
+        $this->assertInstanceOf('ReflectionMethod', $methodObject->getReflectionMethod());
+        $this->assertSame('firstMethod', $methodObject->getName());
+    }
 }
