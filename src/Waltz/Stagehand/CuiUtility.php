@@ -71,6 +71,7 @@ class CuiUtility
     public function setCanvas ( $lineCount ) {
         echo str_repeat("\n", $lineCount);
         echo CursorObject::getMovingEscapeSequences(0, -$lineCount);
+        $this->_canvasSize[0] = 0;
         $this->_canvasSize[1] = $lineCount;
         return $this;
     }
